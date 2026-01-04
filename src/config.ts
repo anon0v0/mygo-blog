@@ -49,6 +49,19 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
+		{
+			name: "其他",
+			url: "#",
+			children: [
+				{ name: "探针", url: "https://jk.511359400.xyz", external: true },
+				{ name: "Umami统计", url: "https://umami.2407365.xyz/share/nAJfnhzmq9N3yjBe", external: true },
+				{ name: "抖音解析", url: "https://dy.511359400.xyz", external: true },
+				{ name: "图床", url: "https://img.2407365.xyz", external: true },
+				{ name: "酒馆", url: "https://ai.511359400.xyz", external: true },
+				{ name: "LobeChat", url: "https://511359400.xyz", external: true },
+				{ name: "网易云音乐解析", url: "https://music.ai00.xyz:4443", external: true },
+			],
+		},
 	],
 };
 

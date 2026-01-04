@@ -1,0 +1,65 @@
+---
+---
+
+<div class="card-base px-6 py-4">
+    <div class="font-bold text-lg mb-2 text-[var(--primary)] flex items-center gap-2">
+        <span class="icon-[tabler--chart-dots] text-xl"></span>
+        <span>访问统计</span>
+    </div>
+    <div id="umami-stats-container" class="grid grid-cols-1 gap-3 text-sm transition-opacity duration-500 opacity-50">
+        <div class="flex justify-between items-center">
+            <span class="flex items-center gap-1 text-black/50 dark:text-white/50"><span class="icon-[tabler--eye]"></span>浏览量</span>
+            <span id="umami-views" class="font-bold font-mono text-black dark:text-gray-50">-</span>
+        </div>
+        <div class="flex justify-between items-center">
+            <span class="flex items-center gap-1 text-black/50 dark:text-white/50"><span class="icon-[tabler--users]"></span>访客数</span>
+            <span id="umami-visitors" class="font-bold font-mono text-black dark:text-gray-50">-</span>
+        </div>
+        <div class="flex justify-between items-center">
+            <span class="flex items-center gap-1 text-black/50 dark:text-white/50"><span class="icon-[tabler--door-enter]"></span>访问数</span>
+            <span id="umami-visits" class="font-bold font-mono text-black dark:text-gray-50">-</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function fetchStats() {
+        const websiteId = "17ddc2cc-3be4-49eb-9227-fe5e76fbf751";
+        const shareId = "nAJfnhzmq9N3yjBe";
+        const domain = "https://umami.2407365.xyz";
+        const endAt = Date.now();
+        const startAt = new Date("2024-01-01").getTime();
+
+        try {
+            // 1. 获取 Share Token
+            const tokenRes = await fetch(`${domain}/api/share/${shareId}`);
+            if (!tokenRes.ok) throw new Error("Failed to get share token");
+            const { token } = await tokenRes.json();
+
+            // 2. 获取统计数据
+            const response = await fetch(`${domain}/api/websites/${websiteId}/stats?startAt=${startAt}&endAt=${endAt}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-umami-share-token": token
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const container = document.getElementById("umami-stats-container");
+                if (container) container.classList.remove("opacity-50");
+
+                document.getElementById("umami-views").innerText = (data.pageviews.value || data.pageviews || 0).toString();
+                document.getElementById("umami-visitors").innerText = (data.visitors.value || data.visitors || 0).toString();
+                document.getElementById("umami-visits").innerText = (data.visits.value || data.visits || 0).toString();
+            } else {
+                console.error("Failed to fetch Umami stats:", response.status);
+            }
+        } catch (e) {
+            console.error("Error fetching Umami stats:", e);
+        }
+    }
+
+    setTimeout(fetchStats, 1000);
+</script>
