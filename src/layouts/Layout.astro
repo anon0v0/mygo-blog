@@ -4,6 +4,10 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
+import CustomEffects from "@components/CustomEffects.astro";
+import MusicPlayer from "@components/MusicPlayer.astro";
+import Splash from "@components/widget/Splash.astro";
+import SakuraBackground from "@components/widget/SakuraBackground.astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -220,14 +224,242 @@ const bannerOffset =
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
 	</head>
+	<!-- Global Artalk Resource -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/artalk/2.9.1/Artalk.css" rel="stylesheet" />
+	<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/artalk/2.9.1/Artalk.js"></script>
+    <style is:global>
+        /* ================================================================
+         * Artalk Comment Markdown Styling - doocs/md Grace Theme
+         * 优雅主题 - 带阴影和精致视觉效果
+         * ================================================================ */
+        
+        .atk-content {
+            line-height: 1.75;
+            font-size: 15px;
+        }
+        
+        /* ==================== 段落 ==================== */
+        .atk-content p { 
+            margin-bottom: 1em !important;
+            letter-spacing: 0.03em;
+        }
+        
+        /* ==================== 标题样式 ==================== */
+        .atk-content h1 {
+            display: table !important;
+            padding: 0.4em 0.8em !important;
+            border-bottom: 2px solid var(--primary) !important;
+            margin: 1.5em auto 1em !important;
+            font-size: 1.4em !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .atk-content h2 {
+            display: table !important;
+            padding: 0.25em 0.8em !important;
+            margin: 1.5em auto 1em !important;
+            color: #fff !important;
+            background: var(--primary) !important;
+            font-size: 1.2em !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            border-radius: 6px !important;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12) !important;
+        }
+        
+        .atk-content h3 {
+            padding-left: 10px !important;
+            border-left: 3px solid var(--primary) !important;
+            border-bottom: 1px dashed var(--primary) !important;
+            margin: 1.5em 0 0.75em 0 !important;
+            font-size: 1.1em !important;
+            font-weight: bold !important;
+            line-height: 1.4 !important;
+        }
+        
+        .atk-content h4, .atk-content h5, .atk-content h6 {
+            margin: 1.2em 0 0.5em !important;
+            color: var(--primary) !important;
+            font-weight: bold !important;
+        }
+        
+        .atk-content h4 { font-size: 1.05em !important; }
+        .atk-content h5, .atk-content h6 { font-size: 1em !important; }
+        
+        /* ==================== 代码块 ==================== */
+        .atk-content pre {
+            background-color: #f6f8fa !important;
+            border-radius: 8px !important;
+            padding: 16px !important;
+            font-size: 85% !important;
+            line-height: 1.5 !important;
+            border: none !important;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05) !important;
+            overflow-x: auto !important;
+            margin: 1em 0 !important;
+        }
+        .dark .atk-content pre { 
+            background-color: #161b22 !important;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2) !important;
+        }
+        
+        /* ==================== 行内代码 ==================== */
+        .atk-content code {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+            font-size: 90% !important;
+        }
+        
+        .atk-content :not(pre) > code {
+            color: #d14 !important;
+            background: rgba(27, 31, 35, 0.06) !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+        }
+        .dark .atk-content :not(pre) > code {
+            color: #f97583 !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        /* ==================== 引用块 ==================== */
+        .atk-content blockquote {
+            font-style: italic !important;
+            padding: 0.8em 1em 0.8em 1.5em !important;
+            border-left: 4px solid var(--primary) !important;
+            border-radius: 6px !important;
+            background: var(--btn-regular-bg) !important;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06) !important;
+            margin: 1em 0 !important;
+            color: inherit !important;
+        }
+        .atk-content blockquote p {
+            margin: 0 !important;
+        }
+        .dark .atk-content blockquote {
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+        
+        /* ==================== 链接 ==================== */
+        .atk-content a {
+            color: var(--primary) !important;
+            text-decoration: none !important;
+            border-bottom: 1px dashed var(--primary) !important;
+            transition: all 0.2s ease !important;
+        }
+        .atk-content a:hover { 
+            border-bottom-style: solid !important;
+            opacity: 0.85 !important;
+        }
+        
+        /* ==================== 粗体 ==================== */
+        .atk-content strong {
+            color: var(--primary) !important;
+            font-weight: bold !important;
+        }
+        
+        /* ==================== 表格 ==================== */
+        .atk-content table {
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
+            border-radius: 8px !important;
+            margin: 1em 0 !important;
+            width: 100% !important;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+            overflow: hidden !important;
+        }
+        
+        .atk-content thead {
+            background: var(--primary) !important;
+            color: #fff !important;
+            font-weight: bold !important;
+        }
+        
+        .atk-content th {
+            padding: 0.6em 0.8em !important;
+            text-align: left !important;
+            border: none !important;
+        }
+        
+        .atk-content td {
+            padding: 0.5em 0.8em !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+            border-left: none !important;
+            border-right: none !important;
+        }
+        .dark .atk-content td {
+            border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+        }
+        
+        .atk-content tbody tr:hover {
+            background: rgba(0, 0, 0, 0.02) !important;
+        }
+        .dark .atk-content tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02) !important;
+        }
+        
+        /* ==================== 列表 ==================== */
+        .atk-content ul {
+            list-style: none !important;
+            padding-left: 1.5em !important;
+        }
+        
+        .atk-content ul > li::before {
+            content: "•" !important;
+            color: var(--primary) !important;
+            font-weight: bold !important;
+            display: inline-block !important;
+            width: 1em !important;
+            margin-left: -1em !important;
+        }
+        
+        .atk-content ol {
+            padding-left: 1.5em !important;
+        }
+        
+        .atk-content li {
+            margin: 0.4em 0 !important;
+        }
+        
+        /* ==================== 图片 ==================== */
+        .atk-content img {
+            display: block !important;
+            max-width: 100% !important;
+            margin: 0.5em auto !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        /* ==================== 分隔线 ==================== */
+        .atk-content hr {
+            height: 1px !important;
+            border: none !important;
+            margin: 1.5em 0 !important;
+            background: linear-gradient(to right, transparent, var(--primary), transparent) !important;
+            opacity: 0.5 !important;
+        }
+        
+        /* ==================== 高亮标记 ==================== */
+        .atk-content mark {
+            background-color: var(--primary) !important;
+            padding: 2px 4px !important;
+            border-radius: 3px !important;
+            color: #fff !important;
+        }
+    </style>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
 	>
+		<SakuraBackground />
+		<Splash />
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
+		<!-- 网易云音乐播放器 -->
+		<MusicPlayer />
+		<CustomEffects />
 	</body>
 </html>
 

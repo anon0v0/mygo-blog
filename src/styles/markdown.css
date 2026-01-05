@@ -1,68 +1,262 @@
-.custom-md {
-    h1 {
-        @apply text-3xl;
+/* Modern Minimalist Theme for Fuwari Blog */
+.custom-md,
+.atk-content {
+    /* CSS Variables for theme customization */
+    --md-primary-color: var(--primary);
+    --md-font-size: 16px;
+    --blockquote-background: var(--btn-regular-bg);
+
+    /* ==================== 一级标题 ==================== */
+    h1:not(.anchor) {
+        display: block;
+        padding-bottom: 0.5em;
+        border-bottom: 2px dashed var(--md-primary-color);
+        margin: 2em 0 1.5em;
+        font-size: 1.8em;
+        font-weight: 800;
+        text-align: center;
+        color: var(--md-primary-color);
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    /* ==================== 二级标题 ==================== */
+    h2 {
+        display: block;
+        padding: 0.25em 0 0.25em 0.5em;
+        margin: 2.5em 0 1.5em;
+        color: var(--md-primary-color);
+        background: transparent;
+        border-bottom: 1px solid color-mix(in srgb, var(--md-primary-color), transparent 80%);
+        border-left: 4px solid var(--md-primary-color);
+        font-size: 1.5em;
+        font-weight: 700;
+        text-align: left;
+        border-radius: 2px;
+    }
+
+    /* ==================== 三级标题 ==================== */
+    h3 {
+        margin: 2em 0 1em;
+        font-size: 1.3em;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+
+    h3:before {
+        content: '#';
+        color: var(--md-primary-color);
+        margin-right: 0.5em;
+        font-weight: normal;
+        opacity: 0.7;
+    }
+
+    /* ==================== 四级至六级标题 ==================== */
+    h4 {
+        margin: 1.8em 0 0.8em;
+        font-size: 1.1em;
+        font-weight: 700;
+    }
+
+    h5,
+    h6 {
+        margin: 1.5em 0 0.5em;
+        font-size: 1em;
+        font-weight: 700;
+        opacity: 0.9;
+    }
+
+    /* Anchor link styling */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        position: relative;
+
         .anchor {
-            @apply transition -m-0.5 ml-[0.2ch] p-0.5 select-none opacity-0 no-underline !important;
+            @apply transition -m-0.5 ml-1 p-0.5 select-none opacity-0 no-underline text-[var(--primary)] !important;
 
             .anchor-icon {
-                @apply mx-[0.45ch] !important;
+                @apply w-4 h-4 inline-block !important;
             }
         }
 
-        &:hover {
-            .anchor {
-                @apply opacity-100 !important;
-            }
+        &:hover .anchor {
+            @apply opacity-100 !important;
         }
     }
 
-    a:not(.no-styling) {
-        @apply relative bg-none font-medium text-[var(--primary)]
-        underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-        display: inline-block;
-    
-        &:hover, &:active {
-            @apply decoration-transparent;
-            background: var(--btn-plain-bg-hover);
-            border-bottom: 1px dashed var(--link-hover);
-            text-decoration: none;
+    /* ==================== 段落 ==================== */
+    p {
+        margin: 1em 0;
+        letter-spacing: 0.02em;
+        line-height: 1.8;
+    }
+
+    /* ==================== 引用块 ==================== */
+    blockquote:not(.admonition) {
+        font-style: normal;
+        padding: 1em 1.2em;
+        border-left: 4px solid var(--md-primary-color);
+        border-radius: 8px;
+        background: color-mix(in srgb, var(--md-primary-color), transparent 95%);
+        margin: 1.5em 0;
+        color: inherit;
+        position: relative;
+        overflow: hidden;
+
+        p {
+            margin: 0;
         }
+    }
+
+    :global(.dark) blockquote:not(.admonition) {
+        background: color-mix(in srgb, var(--md-primary-color), transparent 90%);
+    }
+
+    /* ==================== 链接 ==================== */
+    a:not(.no-styling):not(.anchor) {
+        @apply relative font-medium;
+        color: var(--md-primary-color);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--md-primary-color);
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-bottom-style: solid;
+            opacity: 0.8;
+            background: color-mix(in srgb, var(--md-primary-color), transparent 90%);
+            border-radius: 2px;
+        }
+    }
+
+    /* ==================== 代码样式 ==================== */
+    /* Inline Code */
+    code:not(pre code) {
+        font-size: 0.9em;
+        color: var(--md-primary-color);
+        background: color-mix(in srgb, var(--md-primary-color), transparent 92%);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-family: 'JetBrains Mono Variable', monospace;
+    }
+
+    :global(.dark) code:not(pre code) {
+        background: color-mix(in srgb, var(--md-primary-color), transparent 85%);
+    }
+
+    /* Code Block */
+    pre {
+        border-radius: 12px;
+        border: 1px solid rgba(128, 128, 128, 0.1);
+        margin: 1.5em 0;
+        @apply bg-[var(--codeblock-bg)] !important;
     }
 
     code {
-        @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
-
-        font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-        &:before {
-            content:none;
-        }
-        &:after {
-            content:none;
-        }
-
+        font-family: 'Fira Code', 'JetBrains Mono Variable', monospace;
         counter-reset: line;
-        span.line {
-            &:before {
-                @apply text-white/25 mr-4 w-4 inline-block;
-                content: counter(line);
-                counter-increment: line;
-                direction: rtl;
-            }
-            &:last-child:empty, &:last-child:has(> span:empty:only-child) {
-                display: none;
-            }
+
+        span.line:before {
+            @apply text-white/20 mr-4 w-6 inline-block text-right text-xs select-none;
+            content: counter(line);
+            counter-increment: line;
         }
     }
 
+    /* ==================== 表格 ==================== */
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 12px;
+        margin: 2em 0;
+        width: 100%;
+        border: 1px solid rgba(128, 128, 128, 0.1);
+        overflow: hidden;
+    }
+
+    thead {
+        background: color-mix(in srgb, var(--md-primary-color), transparent 92%);
+        color: var(--md-primary-color);
+        font-weight: 700;
+    }
+
+    :global(.dark) thead {
+        background: color-mix(in srgb, var(--md-primary-color), transparent 85%);
+    }
+
+    th {
+        padding: 0.8em 1em;
+        text-align: left;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    }
+
+    td {
+        padding: 0.8em 1em;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    tbody tr:hover {
+        background: rgba(128, 128, 128, 0.03);
+    }
+
+    /* ==================== 列表 ==================== */
+    ul {
+        list-style: none;
+        padding-left: 1.5em;
+    }
+
+    ol {
+        padding-left: 1.5em;
+    }
+
+    li {
+        margin: 0.4em 0;
+        position: relative;
+    }
+
+    ul li::before {
+        content: "";
+        position: absolute;
+        left: -1em;
+        top: 0.6em;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--md-primary-color);
+        opacity: 0.7;
+    }
+
+    /* ==================== 其他元素 ==================== */
+    img {
+        display: block;
+        max-width: 100%;
+        margin: 1.5em auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        /* Softer shadow */
+        @apply ring-1 ring-black/5 dark:ring-white/5;
+    }
+
+    hr {
+        height: 2px;
+        border: none;
+        margin: 3em 0;
+        background: repeating-linear-gradient(to right, var(--md-primary-color) 0, var(--md-primary-color) 4px, transparent 4px, transparent 12px);
+        opacity: 0.2;
+    }
+
+    /* Copy Button - Keep Existing */
     .copy-btn {
         all: initial;
-        @apply btn-regular-dark opacity-0 shadow-lg shadow-black/50 absolute active:scale-90 h-8 w-8 top-3 right-3 text-sm rounded-lg transition-all ease-in-out z-20 cursor-pointer;
+        @apply bg-neutral-800 text-white opacity-0 shadow-lg shadow-black/50 absolute active:scale-90 h-8 w-8 top-3 right-3 text-sm rounded-lg transition-all ease-in-out z-20 cursor-pointer;
     }
+
     .frame:hover .copy-btn {
         opacity: 1;
     }
@@ -70,52 +264,28 @@
     .copy-btn-icon {
         @apply absolute top-1/2 left-1/2 transition -translate-x-1/2 -translate-y-1/2 w-4 h-4 fill-white pointer-events-none;
     }
+
     .copy-btn .copy-icon {
         @apply opacity-100 fill-white dark:fill-white/75;
     }
+
     .copy-btn.success .copy-icon {
-        @apply opacity-0 fill-[var(--deep-text)]
+        @apply opacity-0 fill-[var(--deep-text)];
     }
+
     .copy-btn .success-icon {
         @apply opacity-0 fill-white;
     }
+
     .copy-btn.success .success-icon {
-        @apply opacity-100
+        @apply opacity-100;
     }
 
     .expressive-code {
         @apply my-4;
+
         ::selection {
             @apply bg-[var(--codeblock-selection)];
         }
     }
-
-
-    ul, ol {
-        li::marker {
-            @apply text-[var(--primary)];
-        }
-    }
-
-    blockquote {
-        @apply not-italic border-transparent relative;
-        font-weight: inherit;
-
-        &:before {
-            @apply content-[''] absolute -left-1 block transition bg-[var(--btn-regular-bg)] h-full w-1 rounded-full;
-        }
-
-        /* Remove the double quotes from default styles */
-        p:before, p:after {
-            @apply content-none;
-        }
-
-    }
-
-    .katex-display-container {
-        max-width: 100%;
-        overflow-x: auto;
-        margin: 1em 0;
-    }
-    
 }
