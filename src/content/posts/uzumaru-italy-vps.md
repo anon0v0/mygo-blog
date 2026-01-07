@@ -27,7 +27,7 @@ lang: ''
 
 看！虽然是只小鸡，但五脏俱全：
 
-![服务器配置](/uploaded_image_1767796761702.png)
+![服务器配置](/images/vps-config.png)
 
 - **CPU**: 1 Core (QEMU Virtual CPU)
 - **内存**: 192 MB (稍微有点小，不过跑个探针够了)
