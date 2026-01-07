@@ -1,5 +1,6 @@
 ---
 import Giscus from "@components/misc/Giscus.astro";
+import Artalk from "../../components/Artalk.astro";
 
 import path from "node:path";
 import License from "@components/misc/License.astro";
@@ -10,7 +11,7 @@ import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
 import { getDir, getPostUrlBySlug } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
-import { gitHubEditConfig, licenseConfig } from "src/config";
+import { gitHubEditConfig, licenseConfig, commentConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
 import { profileConfig, siteConfig } from "../../config";
@@ -156,7 +157,14 @@ const jsonLd = {
             </div>
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
-            <Giscus repo="zyxisme/giscus" repoId="R_kgDOP-gmBg" category="Announcements" categoryId="DIC_kwDOP-gmBs4CwZHF" />
+            
+            {commentConfig.enable && commentConfig.type === 'giscus' && commentConfig.giscus && (
+                <Giscus {...commentConfig.giscus} />
+            )}
+            
+            {commentConfig.enable && commentConfig.type === 'artalk' && commentConfig.artalk && (
+                 <Artalk {...commentConfig.artalk} />
+            )}
 
         </div>
     </div>

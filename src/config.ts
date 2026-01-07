@@ -5,6 +5,7 @@ import type {
 	ProfileConfig,
 	SiteConfig,
 	GitHubEditConfig,
+	CommentConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
@@ -49,6 +50,10 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
+		{
+			name: '聊天室',
+			url: '/chat',
+		},
 		{
 			name: "其他",
 			url: "#",
@@ -96,4 +101,24 @@ export const gitHubEditConfig: GitHubEditConfig = {
 
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	theme: "github-dark",
+};
+
+export const commentConfig: CommentConfig = {
+	enable: true,
+	type: 'artalk',
+	artalk: {
+		serverUrl: 'https://comment.saki.li',
+		siteName: 'MyGo!!!!!',
+	},
+	giscus: {
+		repo: 'zyxisme/giscus',
+		repoId: 'R_kgDOP-gmBg',
+		category: 'Announcements',
+		categoryId: 'DIC_kwDOP-gmBs4CwZHF',
+		mapping: 'pathname',
+		reactionsEnabled: true,
+		emitMetadata: false,
+		inputPosition: 'bottom',
+		lang: 'zh-CN',
+	},
 };

@@ -5,16 +5,16 @@ export type SiteConfig = {
 	subtitle: string;
 
 	lang:
-		| "en"
-		| "zh_CN"
-		| "zh_TW"
-		| "ja"
-		| "ko"
-		| "es"
-		| "th"
-		| "vi"
-		| "tr"
-		| "id";
+	| "en"
+	| "zh_CN"
+	| "zh_TW"
+	| "ja"
+	| "ko"
+	| "es"
+	| "th"
+	| "vi"
+	| "tr"
+	| "id";
 
 	themeColor: {
 		hue: number;
@@ -58,14 +58,14 @@ export enum LinkPreset {
 	Archive = 1,
 	About = 2,
 	Discuss = 3,
- 	Friends = 4,
+	Friends = 4,
 }
 
 export type NavBarLink = {
 	name: string;
 	url: string;
 	external?: boolean;
-	children?: NavBarLink[]; 
+	children?: NavBarLink[];
 };
 
 export type NavBarConfig = {
@@ -111,4 +111,33 @@ export type BlogPostData = {
 
 export type ExpressiveCodeConfig = {
 	theme: string;
+};
+
+export type GitHubEditConfig = {
+	enable: boolean;
+	baseUrl: string;
+};
+
+export type GiscusConfig = {
+	repo: string;
+	repoId: string;
+	category: string;
+	categoryId: string;
+	mapping?: string;
+	reactionsEnabled?: boolean;
+	emitMetadata?: boolean;
+	inputPosition?: 'top' | 'bottom';
+	lang?: string;
+};
+
+export type ArtalkConfig = {
+	serverUrl: string;
+	siteName: string;
+};
+
+export type CommentConfig = {
+	enable: boolean;
+	type: 'giscus' | 'artalk';
+	giscus?: GiscusConfig;
+	artalk?: ArtalkConfig;
 };

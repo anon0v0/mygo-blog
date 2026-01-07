@@ -1,26 +1,25 @@
 ---
+import WidgetLayout from "./WidgetLayout.astro";
 ---
 
-<div class="card-base px-6 py-4">
-    <div class="font-bold text-lg mb-2 text-[var(--primary)] flex items-center gap-2">
-        <span class="icon-[tabler--chart-dots] text-xl"></span>
-        <span>访问统计</span>
-    </div>
-    <div id="umami-stats-container" class="grid grid-cols-1 gap-3 text-sm transition-opacity duration-500 opacity-50">
-        <div class="flex justify-between items-center">
-            <span class="flex items-center gap-1 text-black/50 dark:text-white/50"><span class="icon-[tabler--eye]"></span>浏览量</span>
-            <span id="umami-views" class="font-bold font-mono text-black dark:text-gray-50">-</span>
+<WidgetLayout name="统计" id="umami-stats">
+    <div id="umami-stats-container" class="opacity-50 transition-opacity duration-500">
+        <div class="text-center mb-4 mt-2">
+            <div id="umami-views" class="text-3xl font-bold font-mono text-black dark:text-white mb-1">-</div>
+            <div class="text-xs text-black/50 dark:text-white/50">总浏览量</div>
         </div>
-        <div class="flex justify-between items-center">
-            <span class="flex items-center gap-1 text-black/50 dark:text-white/50"><span class="icon-[tabler--users]"></span>访客数</span>
-            <span id="umami-visitors" class="font-bold font-mono text-black dark:text-gray-50">-</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span class="flex items-center gap-1 text-black/50 dark:text-white/50"><span class="icon-[tabler--door-enter]"></span>访问数</span>
-            <span id="umami-visits" class="font-bold font-mono text-black dark:text-gray-50">-</span>
+        <div class="grid grid-cols-2">
+            <div class="text-center border-r border-black/10 dark:border-white/10">
+                <div id="umami-visits" class="text-lg font-bold font-mono text-black dark:text-white mb-1">-</div>
+                <div class="text-xs text-black/50 dark:text-white/50">访问数</div>
+            </div>
+            <div class="text-center">
+                <div id="umami-visitors" class="text-lg font-bold font-mono text-black dark:text-white mb-1">-</div>
+                <div class="text-xs text-black/50 dark:text-white/50">访客数</div>
+            </div>
         </div>
     </div>
-</div>
+</WidgetLayout>
 
 <script>
     async function fetchStats() {
