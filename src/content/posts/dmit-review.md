@@ -1,6 +1,6 @@
 ---
 title: 贵族的气息！💎 DMIT 美国 CN2/CMIN2 顶配线路 (AMD EPYC 9654)
-published: 2026-01-07
+published: 2026-01-08
 description: '虽然只有 1G 内存，但拥有 EPYC 9654 和三网回程优化，这就是所谓的“轻奢”吗？'
 image: ''
 tags: [VPS, 测评, DMIT, AMD, '9929', CMIN2]

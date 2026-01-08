@@ -1,6 +1,6 @@
 ---
 title: 最后的拼图？🇯🇵 ACCK 日本软银线路 (Softbank)
-published: 2026-01-07
+published: 2026-01-08
 description: '虽然 CPU 和硬盘缩水了，但这可是回老家的直通车啊！Softbank 线路真香～'
 image: ''
 tags: [VPS, 测评, ACCK, 日本, Softbank]

@@ -1,6 +1,6 @@
 ---
 title: 新玩具入手！Uzumaru 意大利 ISP NAT 小鸡测评 🇮🇹
-published: 2026-01-07
+published: 2026-01-08
 description: '虽然不懂为什么要买意大利的服务器（为了吃披萨吗？），但是这个原生 IP 好像很厉害的样子！'
 image: ''
 tags: [VPS, 测评, Uzumaru, 意大利]

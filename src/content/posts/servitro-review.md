@@ -1,6 +1,6 @@
 ---
 title: 性能怪兽的终极体？🇩🇪 Servitro 德国 Ryzen 9950X 测评
-published: 2026-01-07
+published: 2026-01-08
 description: 'AMD Ryzen 9 9950X，单核跑分接近 2000？！这真的是 VPS 吗？'
 image: ''
 tags: [VPS, 测评, Servitro, 德国, Ryzen, 9950X]
